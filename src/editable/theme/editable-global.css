@@ -3,6 +3,8 @@
   --editorial-red: var(--slot4-accent-fill);
   --editorial-ink: var(--slot4-page-text);
   --editorial-paper: var(--slot4-surface-bg);
+  --editable-container: 1340px;
+  --editable-border: rgba(255,255,255,.16);
 }
 
 html { scroll-behavior: smooth; }
@@ -10,41 +12,39 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--slot4-page-bg) !important;
   color: var(--slot4-page-text) !important;
-  background-image: none !important;
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(180deg, #111 0%, #151515 48%, #101010 100%) !important;
+  background-size: calc(100% / 4) 100%, auto;
   font-feature-settings: "kern", "liga", "clig", "calt";
 }
 
 *::selection {
-  background: var(--editorial-red) !important;
-  color: #fff !important;
-  -webkit-text-fill-color: #fff;
+  background: #ffb088 !important;
+  color: #120804 !important;
+  -webkit-text-fill-color: #120804;
 }
 
 *::-moz-selection {
-  background: var(--editorial-red) !important;
-  color: #fff !important;
+  background: #ffb088 !important;
+  color: #120804 !important;
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #ebe7e1; }
-::-webkit-scrollbar-thumb { background: #171717; border: 2px solid #ebe7e1; }
+::-webkit-scrollbar-track { background: #101010; }
+::-webkit-scrollbar-thumb { background: var(--editorial-red); border: 2px solid #101010; }
 ::-webkit-scrollbar-thumb:hover { background: var(--editorial-red); }
 
 .editorial-brand,
-.editorial-serif {
-  font-family: Georgia, 'Times New Roman', serif;
-}
+.editorial-serif { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 
-.editorial-brand {
-  font-style: italic;
-  letter-spacing: -0.065em;
-}
+.editorial-brand { font-style: normal; letter-spacing: 0; }
 
 .editorial-rule { border-color: color-mix(in srgb, var(--editorial-ink) 22%, transparent); }
 
 .article-content {
-  color: #24211e;
-  font-family: Georgia, 'Times New Roman', serif;
+  color: rgba(255,255,255,.78);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: clamp(1.05rem, 1vw + .75rem, 1.25rem);
   line-height: 1.82;
 }
@@ -65,7 +65,7 @@ body {
 .article-content h3,
 .article-content h4 {
   margin: 1.8em 0 .65em;
-  color: #111;
+  color: #fff;
   font-family: ui-sans-serif, system-ui, sans-serif;
   font-weight: 900;
   letter-spacing: -.045em;
@@ -80,6 +80,66 @@ body {
 .article-content img { width: 100%; margin: 2em 0; }
 
 input, textarea, select, button { border-radius: 0 !important; }
+
+.editable-section {
+  background-image: linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: calc(100% / 4) 100%;
+}
+
+.editable-reveal {
+  animation: editable-rise .7s ease both;
+}
+
+.editable-reveal-delay {
+  animation: editable-rise .85s ease .12s both;
+}
+
+.editable-float {
+  animation: editable-float 7s ease-in-out infinite;
+}
+
+.editable-card {
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(18,18,18,.92);
+  transition: transform .35s ease, border-color .35s ease, background .35s ease, box-shadow .35s ease;
+}
+
+.editable-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--slot4-accent);
+  background: rgba(22,22,22,.98);
+  box-shadow: 0 22px 60px rgba(255,90,31,.14);
+}
+
+.editable-outline-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border: 1px solid var(--slot4-accent);
+  padding: .95rem 1.45rem;
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  transition: background .3s ease, transform .3s ease;
+}
+
+.editable-outline-link:hover {
+  background: var(--slot4-accent);
+  transform: translateY(-2px);
+}
+
+@keyframes editable-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes editable-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 
 @media (max-width: 640px) {
   .article-content { font-size: 1.05rem; line-height: 1.72; }
