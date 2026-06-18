@@ -3,6 +3,7 @@ import { mediaDistributionRoute } from '@/config/media-distribution-route'
 
 export const revalidate = 3
 export const generateMetadata = () => taskMetadata('mediaDistribution', mediaDistributionRoute)
+const editableMediaDistributionBasePath = '/media-distribution'
 
 export default async function MediaDistributionPage({
   searchParams,
@@ -13,7 +14,7 @@ export default async function MediaDistributionPage({
     <EditableTaskArchiveRoute
       task="mediaDistribution"
       searchParams={searchParams}
-      basePath={mediaDistributionRoute}
+      basePath={editableMediaDistributionBasePath}
     />
   )
 }
