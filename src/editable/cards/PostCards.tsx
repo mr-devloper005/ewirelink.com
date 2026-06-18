@@ -55,15 +55,14 @@ export function EditorialFeatureCard({ post, href, label = 'Cover story' }: { po
 
 export function RailPostCard({ post, href, index }: { post: SitePost; href: string; index: number }) {
   return (
-    <Link href={href} className={`group ${dc.layout.minRailCard} block border-t-4 border-black bg-[var(--slot4-surface-bg)] ${dc.motion.lift}`}>
-      <div className="relative aspect-[4/3] overflow-hidden bg-[var(--slot4-media-bg)]">
-        <img src={getEditablePostImage(post)} alt={post.title} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      </div>
-      <div className="p-4">
+    <Link href={href} className={`editable-card group ${dc.layout.minRailCard} block p-6 ${dc.motion.lift}`}>
+      <div>
         <div className="flex items-center justify-between gap-3 text-[10px] font-black uppercase tracking-[.18em] text-[var(--slot4-accent)]">
           <span>{getEditableCategory(post)}</span><span>{String(index + 1).padStart(2, '0')}</span>
         </div>
-        <h3 className="mt-3 line-clamp-3 text-xl font-black leading-[1.02] tracking-[-.04em]">{post.title}</h3>
+        <h3 className="mt-6 line-clamp-3 text-2xl font-black leading-[1.05] text-white">{post.title}</h3>
+        <p className="mt-5 line-clamp-4 text-sm leading-7 text-white/65">{getEditableExcerpt(post, 170)}</p>
+        <span className="mt-7 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[.16em] text-white">Read More <ArrowRight className="h-4 w-4 text-[var(--slot4-accent)]" /></span>
       </div>
     </Link>
   )
@@ -71,11 +70,11 @@ export function RailPostCard({ post, href, index }: { post: SitePost; href: stri
 
 export function CompactIndexCard({ post, href, index }: { post: SitePost; href: string; index: number }) {
   return (
-    <Link href={href} className="group grid min-w-0 grid-cols-[46px_1fr] gap-4 border-t border-black/20 py-5 first:border-t-0">
+    <Link href={href} className="group grid min-w-0 grid-cols-[46px_1fr] gap-4 border-t border-white/15 py-5 first:border-t-0">
       <span className="text-3xl font-black leading-none text-[var(--slot4-accent)]">{String(index + 1).padStart(2, '0')}</span>
       <div className="min-w-0">
-        <p className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[.18em] text-black/50"><Clock3 className="h-3 w-3" /> {getEditableCategory(post)}</p>
-        <h3 className="mt-2 line-clamp-3 text-lg font-black leading-tight tracking-[-.03em] group-hover:text-[var(--slot4-accent)]">{post.title}</h3>
+        <p className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[.18em] text-white/50"><Clock3 className="h-3 w-3" /> {getEditableCategory(post)}</p>
+        <h3 className="mt-2 line-clamp-3 text-lg font-black leading-tight text-white group-hover:text-[var(--slot4-accent)]">{post.title}</h3>
       </div>
     </Link>
   )
